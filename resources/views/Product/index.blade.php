@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="container mt-4">
+        <form action="{{ route('home') }}" method="GET"
+              class="d-flex mb-4 flex-column flex-sm-row justify-content-center align-items-center">
+            <input type="text" name="search" class="form-control mb-2 mb-sm-0 me-sm-2" placeholder="جستجوی محصول..."
+                   value="{{ request('search') }}" style="width: 250px;">
+            <button type="submit" class="btn btn-primary">جستجو</button>
+        </form>
+    </div>
     <div class="container mt-5">
         <div class="row">
             @foreach ($products as $product)

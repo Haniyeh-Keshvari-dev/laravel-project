@@ -6,22 +6,33 @@
     <title>mobile shop</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-
 <body dir="rtl">
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand" href="{{ route('home') }}"> Mobile Shop</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('home') }}">Home</a>
+                </li>
+            </ul>
+            <div class="d-flex justify-content-end">
+                @guest
+                    <a href="{{ route('login') }}" class="btn btn-outline-light me-2">ورود</a>
+                    <a href="{{ route('register') }} " class="btn btn-outline-light">ثبت‌نام</a>
+                @else
+                    @auth
+                            <span style="color: #f7fafc;margin-left: 20px;margin-top: 7px">welcome ! {{ auth()->user()->name}}</span>
+                    @endauth
+                    <a href="{{ route('logout') }}" class="btn btn-outline-light">خروج</a>
+                @endguest
 
-    </div>
-
-    <div class="container" style="padding-top: 20px;margin-right: 450px">
-        <form action="{{ route('home') }}" method="GET" class="d-flex mb-4">
-            <input type="text" name="search" class="form-control me-2" placeholder="جستجوی محصول..."
-                   value="{{ request('search') }}" style="width: 250px">
-            <button type="submit" class="btn btn-primary">جستجو</button>
-        </form>
-
+            </div>
+        </div>
     </div>
 </nav>
 
@@ -36,5 +47,3 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
-
