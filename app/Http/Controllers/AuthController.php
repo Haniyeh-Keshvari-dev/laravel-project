@@ -66,7 +66,7 @@ class AuthController extends Controller
     }
     public function logout(Request $request){
 
-        $userName = auth()->user()->name; // دریافت نام کاربر
+        $userName = auth()->user()->name;
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
