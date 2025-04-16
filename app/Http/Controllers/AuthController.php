@@ -31,7 +31,7 @@ class AuthController extends Controller
         if (!$user) {
             return redirect()->back()->with('error', 'Something went wrong');
         } else {
-            return redirect()->route('login')->with('success', 'You have been registered successfully');
+            return redirect()->route('login')->with('success', 'ثبت نام با موفقیت انجام شد');
         }
     }
 
@@ -61,7 +61,6 @@ class AuthController extends Controller
 
         Auth::login($user);
         $request->session()->regenerate();
-
         return redirect()->route('home');
     }
     public function logout(Request $request){

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -19,5 +21,7 @@ Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 Route::get('/cart',[CartController::class,'index'])->name('cart.index');
 Route::post('/cart/add/{product}',[CartController::class,'add'])->name('cart.add');
 Route::post('/cart/remove/{product}',[CartController::class,'remove'])->name('cart.remove');
+
+Route::get('/brand/{brand}',[BrandController::class,'show'])->name('brands.show');
 
 

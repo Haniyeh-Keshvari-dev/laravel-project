@@ -30,6 +30,15 @@
                                 <button class="btn btn-danger">حذف</button>
                             </form>
                         </td>
+                        <td>
+                            <form method="" action="">
+                                @csrf
+                                <button type="submit" class="btn btn-success">
+                                    ثبت سفارش
+                                </button>
+                            </form>
+
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>

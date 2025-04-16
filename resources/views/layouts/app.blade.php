@@ -19,6 +19,27 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('home') }}">Home</a>
                 </li>
+                @php
+                    $brands = \App\Models\Brand::all();
+                @endphp
+
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            برندها
+                        </a>
+                        <ul class="dropdown-menu">
+                            @foreach($brands as $brand)
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('brands.show', $brand->id) }}">
+                                        {{ $brand->name }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                </ul>
+
             </ul>
             <div class="d-flex justify-content-end">
                 <a href="{{ route('cart.index') }}" class="btn btn-warning position-relative">
