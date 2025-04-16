@@ -21,6 +21,15 @@
                 </li>
             </ul>
             <div class="d-flex justify-content-end">
+                <a href="{{ route('cart.index') }}" class="btn btn-warning position-relative">
+                    🛒 سبد خرید
+                    @php $count = count(session('cart', [])); @endphp
+                    @if($count > 0)
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            {{ $count }}
+                        </span>
+                    @endif
+                </a>
                 @guest
                     <a href="{{ route('login') }}" class="btn btn-outline-light me-2">ورود</a>
                     <a href="{{ route('register') }} " class="btn btn-outline-light">ثبت‌نام</a>

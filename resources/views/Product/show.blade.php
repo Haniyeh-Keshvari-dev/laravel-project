@@ -18,6 +18,12 @@
                         <li>ویژگی‌ای ثبت نشده</li>
                     @endforelse
                 </ul>
+                <div class="text-start mt-2">
+                    <form action="{{ route('cart.add', $product->id) }}" method="POST">
+                        @csrf
+                        <button class="btn btn-outline-success">افزودن به سبد خرید</button>
+                    </form>
+                </div>
 
                 <a href="{{ route('home') }}" class="btn btn-secondary mt-3">بازگشت به لیست محصولات</a>
             </div>

@@ -28,8 +28,14 @@
                                 @endforelse
                             </ul>
                             <a href="{{ route('products.show', $product->id) }}" class="btn btn-primary mt-3">مشاهده محصول</a>
-
+                            <div class="text-start mt-2">
+                                <form action="{{ route('cart.add', $product->id) }}" method="POST">
+                                    @csrf
+                                    <button class="btn btn-outline-success">افزودن به سبد خرید</button>
+                                </form>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             @endforeach
