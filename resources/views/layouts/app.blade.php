@@ -56,7 +56,8 @@
                     <a href="{{ route('register') }} " class="btn btn-outline-light">ثبت‌نام</a>
                 @else
                     @auth
-                            <span style="color: #f7fafc;margin-left: 20px;margin-top: 7px">welcome ! {{ auth()->user()->name}}</span>
+                        <span
+                            style="color: #f7fafc;margin-left: 20px;margin-top: 7px">welcome ! {{ auth()->user()->name}}</span>
                     @endauth
                     <a href="{{ route('logout') }}" class="btn btn-outline-light">خروج</a>
                 @endguest

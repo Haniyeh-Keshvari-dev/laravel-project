@@ -27,7 +27,8 @@
                                     <li>⛔ بدون ویژگی</li>
                                 @endforelse
                             </ul>
-                            <a href="{{ route('products.show', $product->id) }}" class="btn btn-primary mt-3">مشاهده محصول</a>
+                            <a href="{{ route('products.show', $product->id) }}" class="btn btn-primary mt-3">مشاهده
+                                محصول</a>
                             <div class="text-start mt-2">
                                 <form action="{{ route('cart.add', $product->id) }}" method="POST">
                                     @csrf

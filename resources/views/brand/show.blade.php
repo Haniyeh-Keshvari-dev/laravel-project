@@ -11,7 +11,8 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $product->name }}</h5>
                             <p>{{ number_format($product->price) }} تومان</p>
-                            <a href="{{ route('products.show', $product->id) }}" class="btn btn-primary btn-sm">مشاهده محصول</a>
+                            <a href="{{ route('products.show', $product->id) }}" class="btn btn-primary btn-sm">مشاهده
+                                محصول</a>
                         </div>
                     </div>
                 </div>
