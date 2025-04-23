@@ -8,6 +8,16 @@
                    value="{{ request('search') }}" style="width: 250px;">
             <button type="submit" class="btn btn-primary">جستجو</button>
         </form>
+        @if(auth()->check() && auth()->user()->is_admin)
+            <div class="container text-center mt-5 rtl-container">
+                <!-- دکمه ورود به پنل ادمین -->
+                <a href="{{route('posts.index')}}" class="btn btn-primary btn-lg">
+                    ورود به پنل ادمین
+                </a>
+            </div>
+        @endif
+
+
     </div>
     <div class="container mt-5">
         <div class="row">
