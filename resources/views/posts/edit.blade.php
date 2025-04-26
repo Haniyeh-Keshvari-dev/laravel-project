@@ -15,9 +15,23 @@
         </div>
         <div class="card-body">
             <!-- فرم ویرایش محصول -->
-            <form action="{{route('posts.update',$post->id)}}" method="POST">
+            <form action="{{route('posts.update', $post->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
+
+                <!-- نمایش تصویر فعلی -->
+                <div class="mb-3 text-center">
+                    <label class="form-label">تصویر محصول</label>
+                    <br>
+                    <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->name }}" class="img-thumbnail" style="width: 200px; height: 200px;">
+                </div>
+
+                <!-- فیلد تغییر تصویر -->
+                <div class="mb-3">
+                    <label for="image" class="form-label">تغییر تصویر محصول</label>
+                    <input type="file" name="image" id="image" class="form-control">
+                </div>
+
                 <div class="mb-3">
                     <label for="name" class="form-label">نام محصول</label>
                     <input type="text" name="name" id="name" class="form-control" value="{{ $post->name }}" required>
@@ -36,8 +50,7 @@
 
                 <div class="mb-3">
                     <label for="price" class="form-label">قیمت محصول</label>
-                    <input type="number" name="price" id="price" class="form-control" value="{{ $post->price }}"
-                           required>
+                    <input type="number" name="price" id="price" class="form-control" value="{{ $post->price }}" required>
                 </div>
 
                 <div class="mb-3">
@@ -58,7 +71,7 @@
 
                 <div class="text-center mt-4">
                     <button type="submit" class="btn btn-success">ذخیره تغییرات</button>
-                    <a href="{{ route('posts.show',$post->id )}}" class="btn btn-secondary">بازگشت</a>
+                    <a href="{{ route('posts.show', $post->id )}}" class="btn btn-secondary">بازگشت</a>
                 </div>
             </form>
         </div>
@@ -67,7 +80,5 @@
 
 <!-- لینک به فایل JavaScript بوت‌استرپ -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>
-

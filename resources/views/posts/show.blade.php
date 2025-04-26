@@ -11,6 +11,7 @@
 <div class="container mt-5">
     <div class="card">
         <div class="card-body">
+            <img src="{{ asset('storage/' . $post->image) }}" class="card-img-top" alt="{{ $post->name }}" style="width: 200px; height: 200px;">
             <h3>{{ $post->name }}</h3>
             <h5 class="text-muted">برند: {{ $post->brand->name }}</h5>
             <p>قیمت: {{ number_format($post->price) }} تومان</p>

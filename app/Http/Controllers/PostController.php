@@ -7,6 +7,7 @@ use App\Models\Brand;
 use App\Models\Feature;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -29,12 +30,23 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $request->validate([
             'name' => 'required',
             'price' => 'required|numeric',
             'brand_id' => 'required|integer|exists:brands,id',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        Product::create($validatedData);
+        $imagepath = null;
+        if ($request->hasFile('image')) {
+            $imagepath = $request->file('image')->store('product_images', 'public');
+        }
+
+        Product::create([
+            'name' => $request->name,
+            'price' => $request->price,
+            'brand_id' => $request->brand_id,
+            'image' => $imagepath,
+        ]);
         return redirect()->route('posts.index')->with('success', 'محصول با موفقیت اضافه شد!');
     }
 
@@ -50,10 +62,20 @@ class PostController extends Controller
             'name' => 'required',
             'price' => 'required|numeric',
             'brand_id' => 'required|integer|exists:brands,id',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        if ($request->hasFile('image')) {
+            if ($post->image) {
+                Storage::disk('public')->delete($post->image);
+            }
+            $validatedData['image'] = $request->file('image')->store('product_images', 'public');
+        }
         $post->update($validatedData);
-        return redirect()->route('posts.index');
+
+        return redirect()->route('posts.index')->with('success', 'محصول با موفقیت به‌روزرسانی شد!');
     }
+
 
     public function destroy(Product $post)
     {

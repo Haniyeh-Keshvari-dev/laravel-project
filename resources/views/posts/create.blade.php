@@ -14,12 +14,16 @@
             <h2>ایجاد محصول جدید</h2>
         </div>
         <div class="card-body">
-            <form action="{{route('posts.store')}}" method="POST">
+            <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                <!-- انتخاب فایل به سبک بوت‌استرپ -->
+                <div class="mb-3">
+                    <label for="image" class="form-label">آپلود تصویر محصول</label>
+                    <input type="file" name="image" id="image" class="form-control" required>
+                </div>
                 <div class="mb-3">
                     <label for="name" class="form-label">نام محصول</label>
-                    <input type="text" name="name" id="name" class="form-control" placeholder="نام محصول را وارد کنید"
-                           required>
+                    <input type="text" name="name" id="name" class="form-control" placeholder="نام محصول را وارد کنید" required>
                 </div>
                 <div class="mb-3">
                     <label for="brand" class="form-label">برند محصول</label>
@@ -32,13 +36,11 @@
                 </div>
                 <div class="mb-3">
                     <label for="price" class="form-label">قیمت محصول</label>
-                    <input type="number" name="price" id="price" class="form-control"
-                           placeholder="قیمت محصول را وارد کنید" required>
+                    <input type="number" name="price" id="price" class="form-control" placeholder="قیمت محصول را وارد کنید" required>
                 </div>
                 <div class="mb-3">
                     <label for="features" class="form-label">ویژگی‌ها</label>
-                    <textarea name="features" id="features" class="form-control" rows="4"
-                              placeholder="ویژگی‌های محصول را وارد کنید"></textarea>
+                    <textarea name="features" id="features" class="form-control" rows="4" placeholder="ویژگی‌های محصول را وارد کنید"></textarea>
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-success">ایجاد محصول</button>
@@ -53,4 +55,3 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-

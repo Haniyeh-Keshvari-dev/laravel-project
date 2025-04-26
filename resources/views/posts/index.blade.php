@@ -13,7 +13,7 @@
     <div class="card text-center mb-4">
         <div class="card-body">
             <h2 class="card-title">پنل مدیریت</h2>
-            <a href="{{route('posts.create')}}" class="btn btn-success">اضافه کردن محصول جدید</a>
+            <a href="{{ route('posts.create') }}" class="btn btn-success">اضافه کردن محصول جدید</a>
         </div>
     </div>
 </div>
@@ -23,6 +23,8 @@
         @foreach ($post as $posts)
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
+                    <!-- نمایش تصویر محصول -->
+                    <img src="{{ asset('storage/' . $posts->image) }}" class="card-img-top" alt="{{ $posts->name }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ $posts->name }}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">برند: {{ $posts->brand->name }}</h6>

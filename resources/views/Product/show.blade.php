@@ -4,6 +4,7 @@
     <div class="container mt-5">
         <div class="card">
             <div class="card-body">
+                <img src="{{ asset('storage/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}" style="width: 200px; height: 200px;">
                 <h3>{{ $product->name }}</h3>
                 <h5 class="text-muted">برند: {{ $product->brand->name }}</h5>
                 <p>قیمت: {{ number_format($product->price) }} تومان</p>
