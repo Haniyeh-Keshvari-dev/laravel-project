@@ -38,7 +38,7 @@
                                 <li>⛔ بدون ویژگی</li>
                             @endforelse
                         </ul>
-                        <a href="{{ route('posts.show', $posts->id) }}" class="btn btn-primary mt-3">مشاهده محصول</a>
+                        <x-product-button url="{{ route('posts.show', $posts->id) }}" text="مشاهده محصول"/>
                         <div class="text-start mt-2">
                         </div>
                     </div>

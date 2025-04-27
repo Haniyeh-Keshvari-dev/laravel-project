@@ -2,6 +2,11 @@
 
 @section('content')
     <div class="container mt-4">
+        @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
         <form action="{{ route('home') }}" method="GET"
               class="d-flex mb-4 flex-column flex-sm-row justify-content-center align-items-center">
             <input type="text" name="search" class="form-control mb-2 mb-sm-0 me-sm-2" placeholder="جستجوی محصول..."
@@ -10,7 +15,6 @@
         </form>
         @if(auth()->check() && auth()->user()->is_admin)
             <div class="container text-center mt-5 rtl-container">
-                <!-- دکمه ورود به پنل ادمین -->
                 <a href="{{route('posts.index')}}" class="btn btn-primary btn-lg">
                     ورود به پنل ادمین
                 </a>
@@ -25,7 +29,8 @@
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
                         <div class="card-body">
-                            <img src="{{ asset('storage/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}">
+                            <img src="{{ asset('storage/' . $product->image) }}" class="card-img-top"
+                                 alt="{{ $product->name }}">
                             <h5 class="card-title">{{ $product->name }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">برند: {{ $product->brand->name }}</h6>
                             <p class="card-text">قیمت: {{ number_format($product->price) }} تومان</p>
@@ -38,8 +43,7 @@
                                     <li>⛔ بدون ویژگی</li>
                                 @endforelse
                             </ul>
-                            <a href="{{ route('products.show', $product->id) }}" class="btn btn-primary mt-3">مشاهده
-                                محصول</a>
+                            <x-product-button url="{{ route('products.show', $product->id) }}" text="مشاهده محصول"/>
                             <div class="text-start mt-2">
                                 <form action="{{ route('cart.add', $product->id) }}" method="POST">
                                     @csrf

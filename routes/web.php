@@ -24,13 +24,13 @@ Route::post('/cart/remove/{product}', [CartController::class, 'remove'])->name('
 
 Route::get('/brand/{brand}', [BrandController::class, 'show'])->name('brands.show');
 
-Route::get('/post', [PostController::class, 'index'])->name('posts.index');
-Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
-Route::get('/post/create', [PostController::class, 'create'])->name('posts.create');
-Route::post('/post', [PostController::class, 'store'])->name('posts.store');
-Route::get('/post/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
-Route::put('/post/{post}', [PostController::class, 'update'])->name('posts.update');
-Route::get('/post/{post}/delete', [PostController::class, 'destroy'])->name('posts.delete');
+Route::get('/post', [PostController::class, 'index'])->name('posts.index')->middleware('checkadmin');
+Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show')->middleware('checkadmin');
+Route::get('/post/create', [PostController::class, 'create'])->name('posts.create')->middleware('checkadmin');
+Route::post('/post', [PostController::class, 'store'])->name('posts.store')->middleware('checkadmin');
+Route::get('/post/{post}/edit', [PostController::class, 'edit'])->name('posts.edit')->middleware('checkadmin');
+Route::put('/post/{post}', [PostController::class, 'update'])->name('posts.update')->middleware('checkadmin');
+Route::delete('/post/{post}/delete', [PostController::class, 'destroy'])->name('posts.delete')->middleware('checkadmin');
 
 
 
