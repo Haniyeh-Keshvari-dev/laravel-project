@@ -34,8 +34,9 @@
                 </form>
 
                 <!-- فرم حذف -->
-                <form action="{{ route('posts.delete', $post->id) }}" method="" style="display: inline-block;">
+                <form action="{{ route('posts.delete', $post->id) }}" method="post" style="display: inline-block;">
                     @csrf
+                    @method('DELETE')
                     <button class="btn btn-outline-danger">حذف</button>
                 </form>
             </div>
