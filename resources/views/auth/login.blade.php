@@ -35,6 +35,9 @@
                             <div class="form-group text-center">
                                 <button type="submit" class="btn btn-primary btn-block">ورود</button>
                             </div>
+                            <div>
+                                <a href="{{route('mail.index')}}">فراموشی رمز عبور</a>
+                            </div>
                         </form>
                     </div>
                 </div>

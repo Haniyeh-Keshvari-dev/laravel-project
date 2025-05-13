@@ -32,5 +32,8 @@ Route::get('/post/{post}/edit', [PostController::class, 'edit'])->name('posts.ed
 Route::put('/post/{post}', [PostController::class, 'update'])->name('posts.update')->middleware('checkadmin');
 Route::delete('/post/{post}/delete', [PostController::class, 'destroy'])->name('posts.delete')->middleware('checkadmin');
 
+Route::get('/mail',[\App\Http\Controllers\MailController::class,'index'])->name('mail.index');
+Route::post('/mail_forget',[\App\Http\Controllers\MailController::class,'forgetPassword'])->name('mail.forgetPassword');
+
 
 

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\MailService;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -28,6 +29,7 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);
+        Mail::to($user->email)->send(new MailService($user->name));
         if (!$user) {
             return redirect()->back()->with('error', 'Something went wrong');
         } else {
@@ -44,13 +46,13 @@ class AuthController extends Controller
     }
 
 
+
     public function loginPost(Request $request)
     {
         $request->validate([
             'email' => 'required|email|exists:users,email',
             'password' => 'required|min:6',
         ]);
-
 
         $user = User::where('email', $request->email)->first();
 
