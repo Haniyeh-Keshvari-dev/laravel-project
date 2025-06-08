@@ -6,7 +6,7 @@
             <div class="col-md-6">
                 <div class="card shadow">
                     <div class="card-header text-center">
-                        <h4>بازیابی رمز عبور</h4>
+                        <h4>تغییر رمز عبور</h4>
                     </div>
 
                     <div class="card-body">
@@ -24,26 +24,39 @@
                             </div>
                         @endif
 
-                        <form method="POST" action="{{ route('mail.forgetPassword') }}">
+                        <form method="post" action="{{route('resetpasswordPost')}}">
                             @csrf
 
-                            <div class="form-group mb-3">
-                                <label for="email">ایمیل</label>
-                                <input type="email" id="email"
-                                       class="form-control @error('email') is-invalid @enderror"
-                                       name="email" value="{{ old('email') }}" required>
+                            <input type="hidden" name="token" value="{{ $token }}">
 
-                                @error('email')
+                            <div class="form-group mb-3">
+                                <label for="password">رمز عبور جدید</label>
+                                <input type="password" id="password"
+                                       class="form-control @error('password') is-invalid @enderror"
+                                       name="password" >
+
+                                @error('password')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="password_confirmation">تأیید رمز عبور</label>
+                                <input type="password" id="password_confirmation"
+                                       class="form-control @error('password_confirmation') is-invalid @enderror"
+                                       name="password_confirmation" >
+
+                                @error('password_confirmation')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <div class="form-group text-center">
-                                <button type="submit" class="btn btn-primary w-100">ارسال لینک بازیابی</button>
+                                <button type="submit" class="btn btn-primary w-100">ذخیره رمز جدید</button>
                             </div>
 
                             <div class="text-center mt-3">
-                                <a href="{{ route('login') }}">بازگشت به صفحه ورود</a>
+                                <a href="{{ route('login') }}">بازگشت به ورود</a>
                             </div>
                         </form>
                     </div>

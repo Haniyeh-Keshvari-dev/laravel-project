@@ -35,5 +35,8 @@ Route::delete('/post/{post}/delete', [PostController::class, 'destroy'])->name('
 Route::get('/mail',[\App\Http\Controllers\MailController::class,'index'])->name('mail.index');
 Route::post('/mail_forget',[\App\Http\Controllers\MailController::class,'forgetPassword'])->name('mail.forgetPassword');
 
+Route::get('/reset_password/{token}',[\App\Http\Controllers\MailController::class,'resetpassword'])->name('resetpassword');
+Route::post('/reset_password',[\App\Http\Controllers\MailController::class,'resetpasswordPost'])->name('resetpasswordPost');
+
 
 

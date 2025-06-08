@@ -16,7 +16,7 @@
         <div class="card-body">
             <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <!-- انتخاب فایل به سبک بوت‌استرپ -->
+
                 <div class="mb-3">
                     <label for="image" class="form-label">آپلود تصویر محصول</label>
                     <input type="file" name="image" id="image" class="form-control" required>

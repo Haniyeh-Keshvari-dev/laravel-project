@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $guarded = [];
+    protected $fillable = ['name', 'price', 'brand_id', 'image'];
     public function brand()
     {
         return $this->belongsTo(Brand::class);
