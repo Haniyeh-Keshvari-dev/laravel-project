@@ -9,12 +9,17 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
+
 class PostController extends Controller
 {
     public function index()
     {
-        $post = Product::all();
-        return view('posts.index', compact('post'));
+        return view('posts.index');
+    }
+    public function managepost(){
+
+        $post=Product::paginate(6);
+        return view('posts.managepost',compact('post'));
     }
 
     public function show(Product $post)

@@ -1,54 +1,37 @@
-<!DOCTYPE html>
-<html lang="fa">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>پنل ادمین</title>
-    <!-- لینک به فایل CSS بوت‌استرپ -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-<div class="container mt-4">
-    <!-- بخش پنل ادمین -->
-    <div class="card text-center mb-4">
-        <div class="card-body">
-            <h2 class="card-title">پنل مدیریت</h2>
-            <a href="{{ route('posts.create') }}" class="btn btn-success">اضافه کردن محصول جدید</a>
-        </div>
-    </div>
-</div>
+@extends('layouts.app')
 
-<div class="container mt-5">
-    <div class="row">
-        @foreach ($post as $posts)
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <!-- نمایش تصویر محصول -->
-                    <img src="{{ asset('storage/' . $posts->image) }}" class="card-img-top" alt="{{ $posts->name }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $posts->name }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">برند: {{ $posts->brand->name }}</h6>
-                        <p class="card-text">قیمت: {{ number_format($posts->price) }} تومان</p>
+@section('content')
+    @can('isAdmin')
+        <div class="container mt-5">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-md-3">
+                    <div class="list-group shadow-sm rounded-3 bg-light">
+                        <a href="" class="list-group-item list-group-item-action active bg-secondary text-white rounded">
+                            <i class="bi bi-house-door-fill"></i> داشبورد
+                        </a>
+                        <a href="" class="list-group-item list-group-item-action text-dark">
+                            <i class="bi bi-people-fill"></i> مدیریت کاربران
+                        </a>
+                        <a href="{{route('posts.managepost')}}" class="list-group-item list-group-item-action text-dark">
+                            <i class="bi bi-file-text-fill"></i> مدیریت پست‌ها
+                        </a>
+                    </div>
+                </div>
 
-                        <p class="mt-3 mb-1"><strong>ویژگی‌ها:</strong></p>
-                        <ul class="list-unstyled">
-                            @forelse($posts->features as $feature)
-                                <li>✅ {{ $feature->name }}</li>
-                            @empty
-                                <li>⛔ بدون ویژگی</li>
-                            @endforelse
-                        </ul>
-                        <x-product-button url="{{ route('posts.show', $posts->id) }}" text="مشاهده محصول"/>
-                        <div class="text-start mt-2">
-                        </div>
+                <!-- Main Panel -->
+                <div class="col-md-9">
+                    <div class="card shadow-sm border-0 rounded-3 p-4 bg-light">
+                        <h3 class="text-dark fw-bold">
+                            <i class="bi bi-speedometer2"></i> خوش آمدید به پنل مدیریت
+                        </h3>
+                        <p class="text-muted">اینجا می‌توانید اطلاعات کاربران و پست‌ها را مدیریت کنید.</p>
+                        <a href="{{ route('posts.create') }}" class="btn btn-outline-secondary btn-lg mt-3 rounded-pill px-4">
+                            <i class="bi bi-plus-circle-fill"></i> ایجاد آیتم جدید
+                        </a>
                     </div>
                 </div>
             </div>
-        @endforeach
-    </div>
-</div>
-
-<!-- لینک جاوااسکریپت بوت‌استرپ -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+        </div>
+    @endcan
+@endsection

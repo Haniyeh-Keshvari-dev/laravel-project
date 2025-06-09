@@ -19,7 +19,7 @@ class ProductController extends Controller
                 $q->where('name', 'like', "%{$searchTerm}%");
             });
         }
-        $products = $query->get();
+        $products = $query->paginate(6);
 
         return view('product.index', compact('products'));
     }

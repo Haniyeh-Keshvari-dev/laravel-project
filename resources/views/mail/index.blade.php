@@ -1,49 +1,53 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <div class="card shadow">
-                    <div class="card-header text-center">
-                        <h4>بازیابی رمز عبور</h4>
+                <div class="card shadow-sm border-0 rounded-3 bg-light">
+                    <div class="card-header text-center bg-light border-0">
+                        <h4 class="fw-bold text-dark">🔑 بازیابی رمز عبور</h4>
                     </div>
 
                     <div class="card-body">
+                        <!-- پیام موفقیت -->
                         @if (session('status'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <div class="alert alert-success text-center shadow-sm rounded mb-3">
                                 {{ session('status') }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         @endif
 
+                        <!-- پیام خطا -->
                         @if ($errors->has('error'))
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <div class="alert alert-danger text-center shadow-sm rounded mb-3">
                                 {{ $errors->first('error') }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         @endif
 
                         <form method="POST" action="{{ route('mail.forgetPassword') }}">
                             @csrf
 
-                            <div class="form-group mb-3">
-                                <label for="email">ایمیل</label>
+                            <!-- ایمیل -->
+                            <div class="mb-3">
+                                <label for="email" class="form-label">ایمیل</label>
                                 <input type="email" id="email"
-                                       class="form-control @error('email') is-invalid @enderror"
-                                       name="email" value="{{ old('email') }}" required>
-
+                                       class="form-control rounded-pill border @error('email') is-invalid @enderror"
+                                       name="email" value="{{ old('email') }}" placeholder="ایمیل خود را وارد کنید..." required>
                                 @error('email')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
-                            <div class="form-group text-center">
-                                <button type="submit" class="btn btn-primary w-100">ارسال لینک بازیابی</button>
+                            <!-- دکمه ارسال لینک بازیابی -->
+                            <div class="text-center mt-4">
+                                <button type="submit" class="btn btn-outline-secondary rounded-pill w-100 px-4">
+                                    📩 ارسال لینک بازیابی
+                                </button>
                             </div>
 
+                            <!-- دکمه بازگشت به صفحه ورود -->
                             <div class="text-center mt-3">
-                                <a href="{{ route('login') }}">بازگشت به صفحه ورود</a>
+                                <a href="{{ route('login') }}" class="text-muted fw-semibold">⬅ بازگشت به صفحه ورود</a>
                             </div>
                         </form>
                     </div>

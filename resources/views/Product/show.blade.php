@@ -2,31 +2,41 @@
 
 @section('content')
     <div class="container mt-5">
-        <div class="card">
-            <div class="card-body">
-                <img src="{{ asset('storage/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}" style="width: 200px; height: 200px;">
-                <h3>{{ $product->name }}</h3>
+        <div class="card shadow-sm border-0 rounded-3 bg-light">
+            <div class="card-body text-center">
+                <!-- تصویر محصول -->
+                <img src="{{ asset('storage/' . $product->image) }}" class="card-img-top img-fluid rounded mb-3"
+                     alt="{{ $product->name }}" style="width: 180px; height: 180px; object-fit: cover;">
+
+                <!-- اطلاعات محصول -->
+                <h3 class="fw-bold text-dark">{{ $product->name }}</h3>
                 <h5 class="text-muted">برند: {{ $product->brand->name }}</h5>
-                <p>قیمت: {{ number_format($product->price) }} تومان</p>
+                <p class="text-dark">💰 قیمت: <strong>{{ number_format($product->price) }}</strong> تومان</p>
 
                 <hr>
 
-                <h6>ویژگی‌ها:</h6>
-                <ul>
+                <!-- ویژگی‌های محصول -->
+                <h6 class="fw-semibold">ویژگی‌ها:</h6>
+                <ul class="list-group list-group-flush">
                     @forelse($product->features as $feature)
-                        <li>{{ $feature->name }}</li>
+                        <li class="list-group-item text-dark border-0">✅ {{ $feature->name }}</li>
                     @empty
-                        <li>ویژگی‌ای ثبت نشده</li>
+                        <li class="list-group-item text-muted border-0">⛔ ویژگی‌ای ثبت نشده</li>
                     @endforelse
                 </ul>
-                <div class="text-start mt-2">
+
+                <!-- دکمه افزودن به سبد خرید -->
+                <div class="mt-3">
                     <form action="{{ route('cart.add', $product->id) }}" method="POST">
                         @csrf
-                        <button class="btn btn-outline-success">افزودن به سبد خرید</button>
+                        <button class="btn btn-outline-success rounded-pill px-4">🛒 افزودن به سبد خرید</button>
                     </form>
                 </div>
 
-                <a href="{{ route('home') }}" class="btn btn-secondary mt-3">بازگشت به لیست محصولات</a>
+                <!-- دکمه بازگشت به لیست محصولات -->
+                <a href="{{ route('home') }}" class="btn btn-outline-secondary rounded-pill mt-3 px-4">
+                    <i class="bi bi-arrow-left-circle"></i> بازگشت به لیست محصولات
+                </a>
             </div>
         </div>
     </div>
