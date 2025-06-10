@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendWelcomeMail;
 use App\Mail\MailService;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -29,7 +30,9 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);
-        Mail::to($user->email)->send(new MailService($user->name));
+
+        SendWelcomeMail::dispatch($user);
+
         if (!$user) {
             return redirect()->back()->with('error', 'Something went wrong');
         } else {
@@ -44,7 +47,6 @@ class AuthController extends Controller
         }
         return view('auth.login');
     }
-
 
 
     public function loginPost(Request $request)
@@ -65,7 +67,9 @@ class AuthController extends Controller
         $request->session()->regenerate();
         return redirect()->route('home');
     }
-    public function logout(Request $request){
+
+    public function logout(Request $request)
+    {
 
         $userName = auth()->user()->name;
         Auth::logout();

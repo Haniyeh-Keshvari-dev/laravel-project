@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\Sendmail;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\DB;
+
 
 
 class MailController extends Controller
@@ -34,10 +36,9 @@ class MailController extends Controller
             'token' => $token,
             'created_at' => Carbon::now()
         ]);
-        Mail::send('mail.forget-password', ['token' => $token], function ($message) use ($request) {
-            $message->to($request->email);
-            $message->subject('reset Password');
-        });
+
+//        ارسال ایمیل با صف
+        Sendmail::dispatch($token,$request->email);
 
         return redirect()->back()->with('status', 'ایمیل بازیابی رمز عبور با موفقیت ارسال شد.');
 
