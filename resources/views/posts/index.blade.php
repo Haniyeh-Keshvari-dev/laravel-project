@@ -10,7 +10,7 @@
                         <a href="" class="list-group-item list-group-item-action active bg-secondary text-white rounded">
                             <i class="bi bi-house-door-fill"></i> داشبورد
                         </a>
-                        <a href="" class="list-group-item list-group-item-action text-dark">
+                        <a href="{{route('users.index')}}" class="list-group-item list-group-item-action text-dark">
                             <i class="bi bi-people-fill"></i> مدیریت کاربران
                         </a>
                         <a href="{{route('posts.managepost')}}" class="list-group-item list-group-item-action text-dark">

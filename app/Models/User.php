@@ -9,7 +9,8 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-
+    // app/Models/User.php
+    // app/Models/User.php
     public function orders()
     {
         return $this->hasMany(Order::class);
@@ -30,6 +31,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_admin',
     ];
 
     /**

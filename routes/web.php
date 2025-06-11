@@ -3,6 +3,7 @@
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
@@ -35,6 +36,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/post/{post}', [PostController::class, 'update'])->name('posts.update');
     Route::delete('/post/{post}/delete', [PostController::class, 'destroy'])->name('posts.delete');
 });
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+Route::delete('/users/{user}/delete', [UserController::class, 'destroy'])->name('users.delete');
 
 Route::get('/mail', [\App\Http\Controllers\MailController::class, 'index'])->name('mail.index');
 Route::post('/mail_forget', [\App\Http\Controllers\MailController::class, 'forgetPassword'])->name('mail.forgetPassword');
