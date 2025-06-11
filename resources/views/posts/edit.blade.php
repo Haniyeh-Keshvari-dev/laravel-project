@@ -71,7 +71,7 @@
 
                 <div class="text-center mt-4">
                     <button type="submit" class="btn btn-success">ذخیره تغییرات</button>
-                    <a href="{{ route('posts.show', $post->id )}}" class="btn btn-secondary">بازگشت</a>
+                    <a href="{{ route('posts.managepost', $post->id )}}" class="btn btn-secondary">بازگشت</a>
                 </div>
             </form>
         </div>

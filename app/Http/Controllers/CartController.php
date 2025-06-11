@@ -12,7 +12,11 @@ class CartController extends Controller
     public function index()
     {
         $cart = session()->get('cart', []);
-        return view('cart.index', compact('cart'));
+
+        $totalprice = collect($cart)->sum(fn($item) => $item['price'] * $item['count']);
+        $totalcount = collect($cart)->sum(fn($item) => $item['count']);
+
+        return view('cart.index', compact('cart', 'totalprice', 'totalcount'));
     }
 
     public function add(Request $request, Product $product)
@@ -27,6 +31,7 @@ class CartController extends Controller
         return redirect()->route('home')->with('success', 'محصول به سبد خرید اضافه شد!');
 
     }
+
 
     public function remove(Product $product)
     {

@@ -78,13 +78,13 @@ class PostController extends Controller
         }
         $post->update($validatedData);
 
-        return redirect()->route('posts.index')->with('success', 'محصول با موفقیت به‌روزرسانی شد!');
+        return redirect()->route('posts.managepost')->with('success', 'محصول با موفقیت به‌روزرسانی شد!');
     }
 
 
     public function destroy(Product $post)
     {
         $post->delete();
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.managepost');
     }
 }

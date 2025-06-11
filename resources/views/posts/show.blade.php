@@ -28,17 +28,6 @@
             </ul>
             <div class="text-start mt-2">
                 <!-- فرم ویرایش -->
-                <form action="{{ route('posts.edit', $post->id) }}" method="" style="display: inline-block;">
-                    @csrf
-                    <button class="btn btn-outline-primary">ویرایش</button>
-                </form>
-
-                <!-- فرم حذف -->
-                <form action="{{ route('posts.delete', $post->id) }}" method="post" style="display: inline-block;">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-outline-danger">حذف</button>
-                </form>
             </div>
 
             <!-- لینک بازگشت -->

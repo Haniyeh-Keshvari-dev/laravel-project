@@ -35,10 +35,24 @@
                             @endforelse
                         </ul>
 
-                        <!-- دکمه مشاهده محصول با رنگ‌های نود -->
-                        <a href="{{ route('posts.show', $posts->id) }}" class="btn btn-outline-secondary btn-lg mt-3 rounded-pill">
-                            <i class="bi bi-eye"></i> مشاهده محصول
-                        </a>
+{{--                        <a href="{{ route('posts.show', $posts->id) }}" class="btn btn-outline-secondary btn-lg mt-3 rounded-pill">--}}
+{{--                            <i class="bi bi-eye"></i> مشاهده محصول--}}
+{{--                        </a>--}}
+
+                        <div class="d-flex justify-content-center gap-2 mt-3">
+                            <a href="{{ route('posts.edit', $posts->id) }}" class="btn btn-outline-warning btn-sm rounded-pill">
+                                <i class="bi bi-pencil-square"></i> ویرایش
+                            </a>
+                            <form action="{{ route('posts.delete', $posts->id) }}" method="POST" style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-outline-danger btn-sm rounded-pill" onclick="return confirm('آیا مطمئن هستید؟')">
+                                    <i class="bi bi-trash"></i> حذف
+                                </button>
+                            </form>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
@@ -50,8 +64,6 @@
         {{ $post->links('pagination::bootstrap-5') }}
     </div>
 
-    <!-- دکمه بازگشت به پنل مدیریت -->
-    <!-- دکمه بازگشت به پنل مدیریت -->
     <div class="text-center mt-4 mb-5">
         <a href="{{ route('posts.index') }}" class="btn btn-outline-dark btn-md rounded-pill px-3">
             <i class="bi bi-arrow-left-circle"></i> بازگشت به پنل مدیریت
