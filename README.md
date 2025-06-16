@@ -5,10 +5,35 @@ A basic e-commerce website built with Laravel. This project includes user authen
 
 ## ✨ Features
 
-- Manual user registration and login system
-- Admin panel with full CRUD for posts
-- Simple shopping cart using session
-- Database seeding for sample data
+✅ Secure Authentication
+
+User registration, login/logout with CSRF protection
+
+Password reset and email verification
+
+✅ Role-based Authorization
+
+Admin role with full system access
+
+Gate & Policy implementation for controlling CRUD operations on posts and users
+
+✅ Posts Management (CRUD)
+
+Create, read, update, and delete posts
+
+Searchable listings with pagination support
+
+✅ Simple Shopping Cart
+
+Add, remove, and view cart items
+
+Cart data persisted in Laravel Session until checkout
+
+✅ Database Seeding
+
+Pre-populated demo data including Admin, User, and sample posts
+
+
 
 ## 🧰 Technologies
 
